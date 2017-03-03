@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    3.3 6-3(已阅)
+    3.3 6-3(已阅了)
     <div class="content-wrapper">
       <div class="avatar">
         <img width="64" height="64" :src="seller.avatar" alt="">
