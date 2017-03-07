@@ -1,2 +1,0 @@
-# sell
-sell like elema
