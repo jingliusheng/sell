@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
    export default {
      props: {
        seller: {
@@ -71,7 +71,7 @@
         .description
           margin-bottom: 10px
           line-height: 12px
-          font-size:12px 
+          font-size:12px
         .support
           font-size: 0
           .icon
