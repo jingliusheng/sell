@@ -23,22 +23,40 @@
       </div>
     </div>
     <div class="bulletin-wrapper" @click="showDetail">
-      <span class="bulletin-title"></span><span class="bulletin-text">{{ seller.bulletin }}</span>
-      <span class="icon-keyboard_arrow_right"></span>
+      <span class="bulletin-title"></span><span class="bulletin-text">{{ seller.bulletin }}</span><span class="icon-keyboard_arrow_right"></span>
     </div>
     <div class="background">
       <img :src="seller.avatar" width="100%" height="100%">
     </div>
-    <div v-show="detailShow" class="detail">
+    <div v-show="detailShow" class="detail" transition="fade">
       <div class="detail-wrapper clearfix">
         <div class="detail-main">
           <h1 class="name">{{ seller.name }}</h1>
           <div class="star-wrapper">
             <star :size="48" :score="seller.score"></star>
           </div>
+          <div class="title">
+            <div class="line"></div>
+            <div class="text">优惠信息</div>
+            <div class="line"></div>
+          </div>
+          <ul v-if="seller.supports" class="supports">
+            <li class="support-item" v-for="item in seller.supports">
+              <span class="icon" :class="classMap[seller.supports[$index].type]"></span>
+              <span class="text">{{ seller.supports[$index].description }}</span>
+            </li>
+          </ul>
+          <div class="title">
+            <div class="line"></div>
+            <div class="text">商家公告</div>
+            <div class="line"></div>
+          </div>
+          <div class="bulletin">
+            <p class="content">{{ seller.bulletin }}</p>
+          </div>
         </div>
       </div>
-      <div class="detail-close">
+      <div class="detail-close"  @click="hideDetail">
         <i class="icon-close"></i>
       </div>
     </div>
@@ -62,6 +80,9 @@
      methods: {
        showDetail() {
          this.detailShow = true;
+       },
+       hideDetail() {
+         this.detailShow = false;
        }
      },
      created() {
@@ -135,7 +156,7 @@
               bg-image('special_1')
           .text
               font-size: 12px
-              line-height: 10px
+              line-height: 12px
       .support-count
         position: absolute
         right: 12px
@@ -155,7 +176,7 @@
     .bulletin-wrapper
       position: relative
       height: 28px
-      line-height: 28px
+      line-height: 26px
       padding: 0 22px 0 12px
       white-space:nowrap
       overflow: hidden
@@ -163,8 +184,8 @@
       background-color: rgba(7, 17, 27, 0.2)
       .bulletin-title
         display: inline-block
-        vertical-align: top
-        margin-top: 8px
+        vertical-align: middle
+        /*margin-top: 8px*/
         width: 22px
         height: 12px
         bg-image('bulletin')
@@ -172,12 +193,12 @@
         background-repeat: no-repeat
       .bulletin-text
         margin: 0 4px
-        font-size: 10px
+        font-size: 12px
       .icon-keyboard_arrow_right
         position: absolute
         font-size: 10px
         right: 12px
-        top: 8px
+        top: 10px
     .background
       position: absolute
       top: 0
@@ -186,7 +207,6 @@
       height:100%
       z-index:-1
       filter:blur(10px)
-
     .detail
       position: fixed
       z-index: 100
@@ -195,23 +215,84 @@
       width: 100%
       height: 100%
       overflow: auto
-      background: rgba(7, 17, 27, 0.8)
+      transition: all 0.5s
+      backdrop-filter: blur(10px)//只有ios可以看到模糊效果
+      &.fade-transition
+        opacity:1
+        background: rgba(7, 17, 27, 0.8)
+      &.fade-enter,&.fade-leave
+        opacity:0
+        background: rgba(7, 17, 27, 0)
       .detail-wrapper
         min-height: 100%
         width: 100%
         .detail-main
-          margin-top: 64px
+          margin-top: 50px
           padding-bottom: 64px
           .name
             line-height: 16px
             text-align: center
             font-size: 16px
             font-weight: 700
+          .star-wrapper
+            margin-top: 18px
+            padding: 2px 0
+            text-align: center
+          .title
+            display: flex
+            width: 80%
+            margin:28px auto 24px
+            .line
+              flex:1
+              position: relative
+              top: -6px
+              border-bottom:1px solid rgba(255, 255, 255, 0.2)
+            .text
+              padding:0 12px
+              font-weight: 700
+              font-size: 14px
+          .supports
+            width:80%
+            margin:0 auto
+            .support-item
+              padding:0 12px
+              margin-bottom: 12px
+              font-size:0
+              &.last-child
+                margin-bottom:0
+              .icon
+                display: inline-block
+                width: 16px
+                height: 16px
+                vertical-align:top
+                margin-right: 6px
+                background-size:16px 16px
+                background-repeat:no-repeat
+                &.decrease
+                 bg-image('decrease_2')
+                &.discount
+                  bg-image('discount_2')
+                &.guarantee
+                  bg-image('guarantee_2')
+                &.invoice
+                  bg-image('invoice_2')
+                &.special
+                  bg-image('special_2')
+              .text
+                line-height: 16px
+                font-size: 12px
+          .bulletin
+            width:80%
+            margin:0 auto
+            .content
+              padding:0 12px
+              line-height: 24px
+              font-size:12px
       .detail-close
         position: relative
         width: 32px
         height: 32px
-        margin: -64px auto 0
+        margin: -60px auto 0
         clear: both
         font-size:32px
 </style>
