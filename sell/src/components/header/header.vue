@@ -1,104 +1,104 @@
 <template>
-  <div class="header">
-    <div class="content-wrapper">
-      <div class="avatar">
-        <img width="64" height="64" :src="seller.avatar" alt="">
+  <div class = "header">
+    <div class = "content-wrapper">
+      <div class = "avatar">
+        <img width = "64" height = "64" :src = "seller.avatar" alt = "">
       </div>
-      <div class="content">
-        <div class="title">
-          <span class="brand"></span>
-          <span class="name">{{ seller.name }}</span>
+      <div class = "content">
+        <div class = "title">
+          <span class = "brand"></span>
+          <span class = "name">{{ seller.name }}</span>
         </div>
-        <div class="description">
+        <div class = "description">
           {{ seller.description }}/{{ seller.deliveryTime }}分钟送达
         </div>
-        <div v-if="seller.supports" class="support">
-          <span class="icon" :class="classMap[seller.supports[0].type]"></span>
-          <span class="text">{{ seller.supports[0].description }}</span>
+        <div v-if = "seller.supports" class = "support">
+          <span class = "icon" :class = "classMap[seller.supports[0].type]"></span>
+          <span class = "text">{{ seller.supports[0].description }}</span>
         </div>
       </div>
-      <div v-if="seller.supports" class="support-count" @click="showDetail">
-        <span class="count">{{ seller.supports.length }}个</span>
-        <i class="icon-keyboard_arrow_right"></i>
+      <div v-if = "seller.supports" class = "support-count" @click = "showDetail">
+        <span class = "count">{{ seller.supports.length }}个</span>
+        <i class = "icon-keyboard_arrow_right"></i>
       </div>
     </div>
-    <div class="bulletin-wrapper" @click="showDetail">
-      <span class="bulletin-title"></span><span class="bulletin-text">{{ seller.bulletin }}</span><span class="icon-keyboard_arrow_right"></span>
+    <div class = "bulletin-wrapper" @click = "showDetail">
+      <span class = "bulletin-title"></span><span class = "bulletin-text">{{ seller.bulletin }}</span><span
+      class = "icon-keyboard_arrow_right"></span>
     </div>
-    <div class="background">
-      <img :src="seller.avatar" width="100%" height="100%">
+    <div class = "background">
+      <img :src = "seller.avatar" width = "100%" height = "100%">
     </div>
-    <div v-show="detailShow" class="detail" transition="fade">
-      <div class="detail-wrapper clearfix">
-        <div class="detail-main">
-          <h1 class="name">{{ seller.name }}</h1>
-          <div class="star-wrapper">
-            <star :size="48" :score="seller.score"></star>
+    <div v-show = "detailShow" class = "detail" transition = "fade">
+      <div class = "detail-wrapper clearfix">
+        <div class = "detail-main">
+          <h1 class = "name">{{ seller.name }}</h1>
+          <div class = "star-wrapper">
+            <star :size = "48" :score = "seller.score"></star>
           </div>
-          <div class="title">
-            <div class="line"></div>
-            <div class="text">优惠信息</div>
-            <div class="line"></div>
+          <div class = "title">
+            <div class = "line"></div>
+            <div class = "text">优惠信息</div>
+            <div class = "line"></div>
           </div>
-          <ul v-if="seller.supports" class="supports">
-            <li class="support-item" v-for="item in seller.supports">
-              <span class="icon" :class="classMap[seller.supports[$index].type]"></span>
-              <span class="text">{{ seller.supports[$index].description }}</span>
+          <ul v-if = "seller.supports" class = "supports">
+            <li class = "support-item" v-for = "item in seller.supports">
+              <span class = "icon" :class = "classMap[seller.supports[$index].type]"></span>
+              <span class = "text">{{ seller.supports[$index].description }}</span>
             </li>
           </ul>
-          <div class="title">
-            <div class="line"></div>
-            <div class="text">商家公告</div>
-            <div class="line"></div>
+          <div class = "title">
+            <div class = "line"></div>
+            <div class = "text">商家公告</div>
+            <div class = "line"></div>
           </div>
-          <div class="bulletin">
-            <p class="content">{{ seller.bulletin }}</p>
+          <div class = "bulletin">
+            <p class = "content">{{ seller.bulletin }}</p>
           </div>
         </div>
       </div>
-      <div class="detail-close"  @click="hideDetail">
-        <i class="icon-close"></i>
+      <div class = "detail-close" @click = "hideDetail">
+        <i class = "icon-close"></i>
       </div>
     </div>
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script type = "text/ecmascript-6">
   import star from 'components/star/star';
-
-   export default {
-     props: {
-       seller: {
-         type: Object
-       }
-     },
-     data() {
-       return {
-         detailShow: false
-       };
-     },
-     methods: {
-       showDetail() {
-         this.detailShow = true;
-       },
-       hideDetail() {
-         this.detailShow = false;
-       }
-     },
-     created() {
+  export default {
+    props: {
+      seller: {
+        type: Object
+      }
+    },
+    data() {
+      return {
+        detailShow: false
+      };
+    },
+    methods: {
+      showDetail() {
+        this.detailShow = true;
+      },
+      hideDetail() {
+        this.detailShow = false;
+      }
+    },
+    created() {
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
-     },
-     components: {
-       star
-     }
-   };
+    },
+    components: {
+      star
+    }
+  };
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
-  @import "../../common/stylus/mixin.styl"
-
+<style lang = "stylus" rel = "stylesheet/stylus">
+  @import '../../common/stylus/mixin.styl'
+  
   .header
-    color: #fff
+    color: #FFFFFF
     position: relative
     overflow: hidden
     background: rgba(7, 17, 27, 0.5)
@@ -133,7 +133,7 @@
         .description
           margin-bottom: 10px
           line-height: 12px
-          font-size:12px
+          font-size: 12px
         .support
           font-size: 0
           .icon
@@ -142,7 +142,7 @@
             width: 12px
             height: 12px
             margin-right: 4px
-            background-size:12px 12px
+            background-size: 12px 12px
             background-repeat: no-repeat
             &.decrease
               bg-image('decrease_1')
@@ -155,8 +155,8 @@
             &.special
               bg-image('special_1')
           .text
-              font-size: 12px
-              line-height: 12px
+            font-size: 12px
+            line-height: 12px
       .support-count
         position: absolute
         right: 12px
@@ -178,7 +178,7 @@
       height: 28px
       line-height: 26px
       padding: 0 22px 0 12px
-      white-space:nowrap
+      white-space: nowrap
       overflow: hidden
       text-overflow: ellipsis
       background-color: rgba(7, 17, 27, 0.2)
@@ -203,10 +203,10 @@
       position: absolute
       top: 0
       left: 0
-      width:100%
-      height:100%
-      z-index:-1
-      filter:blur(10px)
+      width: 100%
+      height: 100%
+      z-index: -1
+      filter: blur(10px)
     .detail
       position: fixed
       z-index: 100
@@ -216,12 +216,12 @@
       height: 100%
       overflow: auto
       transition: all 0.5s
-      backdrop-filter: blur(10px)//只有ios可以看到模糊效果
+      backdrop-filter: blur(10px) //只有ios可以看到模糊效果
       &.fade-transition
-        opacity:1
+        opacity: 1
         background: rgba(7, 17, 27, 0.8)
-      &.fade-enter,&.fade-leave
-        opacity:0
+      &.fade-enter, &.fade-leave
+        opacity: 0
         background: rgba(7, 17, 27, 0)
       .detail-wrapper
         min-height: 100%
@@ -241,35 +241,35 @@
           .title
             display: flex
             width: 80%
-            margin:28px auto 24px
+            margin: 28px auto 24px
             .line
-              flex:1
+              flex: 1
               position: relative
               top: -6px
-              border-bottom:1px solid rgba(255, 255, 255, 0.2)
+              border-bottom: 1px solid rgba(255, 255, 255, 0.2)
             .text
-              padding:0 12px
+              padding: 0 12px
               font-weight: 700
               font-size: 14px
           .supports
-            width:80%
-            margin:0 auto
+            width: 80%
+            margin: 0 auto
             .support-item
-              padding:0 12px
+              padding: 0 12px
               margin-bottom: 12px
-              font-size:0
+              font-size: 0
               &.last-child
-                margin-bottom:0
+                margin-bottom: 0
               .icon
                 display: inline-block
                 width: 16px
                 height: 16px
-                vertical-align:top
+                vertical-align: top
                 margin-right: 6px
-                background-size:16px 16px
-                background-repeat:no-repeat
+                background-size: 16px 16px
+                background-repeat: no-repeat
                 &.decrease
-                 bg-image('decrease_2')
+                  bg-image('decrease_2')
                 &.discount
                   bg-image('discount_2')
                 &.guarantee
@@ -282,17 +282,17 @@
                 line-height: 16px
                 font-size: 12px
           .bulletin
-            width:80%
-            margin:0 auto
+            width: 80%
+            margin: 0 auto
             .content
-              padding:0 12px
+              padding: 0 12px
               line-height: 24px
-              font-size:12px
+              font-size: 12px
       .detail-close
         position: relative
         width: 32px
         height: 32px
         margin: -60px auto 0
         clear: both
-        font-size:32px
+        font-size: 32px
 </style>
