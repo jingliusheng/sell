@@ -1,6 +1,6 @@
 <template>
   <div>
-    i am ratings
+    i am ratings7-7
   </div>
 </template>
 
