@@ -12,7 +12,7 @@
         <a v-link = "{path:'/seller'}">商家</a>
       </div>
     </div>
-    <router-view></router-view>
+    <router-view :seller="seller"></router-view>
   </div>
 </template>
 
@@ -42,7 +42,7 @@
 
 <style lang = "stylus" rel = "stylesheet/stylus">
   @import "common/stylus/mixin.styl"
-  
+
   .tab
     display: flex
     width: 100%
