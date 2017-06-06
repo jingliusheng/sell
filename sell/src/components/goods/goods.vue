@@ -100,6 +100,8 @@
     },
     methods: {
       selectMenu(index, event) {
+//        这个判断是为了防止在电脑端事件执行两次。
+// 条件是根据better-scroll的派发事件判断的，只有bs中_constructed才为true
         if (!event._constructed) {
           return;
         }
@@ -108,7 +110,10 @@
         this.foodScroll.scrollToElement(el, 300);
       },
       _drop(target) {
-        this.$refs.shopcart.drop(target);
+//        体验优化，异步执行小球落下
+        this.$nextTick(() => {
+          this.$refs.shopcart.drop(target);
+        });
       },
       _initScroll() {
         this.menuScroll = new BScroll(this.$els.menuWrapper, {

@@ -29,9 +29,12 @@
       this.$http.get('/api/seller').then((response) => {
         response = response.body;
         if (response.errno === ERR_OK) {
+          document.getElementById('app').style.display = 'block';
+          document.getElementById('preloader').style.display = 'none';
           this.seller = response.data;
         }
       }, () => {
+        window.alert('网络问题，请稍后重试');
       });
     },
     components: {
