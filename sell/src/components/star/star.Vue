@@ -44,7 +44,7 @@
 
 <style lang = "stylus" rel = "stylesheet/stylus">
   @import "../../common/stylus/mixin.styl"
-  
+
   .star
     font-size: 0
     .star-item
@@ -68,7 +68,7 @@
       .star-item
         width: 15px
         height: 15px
-        margin-right: 16px
+        margin-right: 6px
         background-size: 15px 15px
         &:last-child
           margin-right: 0
